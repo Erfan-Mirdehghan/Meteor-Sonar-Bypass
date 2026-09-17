@@ -1,139 +1,79 @@
-# Meteor Addon Template
+# Sonar Bypass — Meteor Client Addon
 
-A template to allow easy usage of the Meteor Addon API.
+An addon for [Meteor Client](https://meteorclient.com/) that automatically bypasses [Sonar Anti-Bot](https://github.com/jonesdevelopment/sonar) verification on Minecraft servers.
 
-### How to use
+## ⚠️ Disclaimer
 
-#### Use GitHub Template (Recommended)
+This project is intended for **educational purposes** and **local testing only**. Using it to bypass anti-bot protection on servers you do not own is against their terms of service and may result in a permanent ban. The author is not responsible for any misuse.
 
-- Click the green `Use this template` button in the top right corner of this page.  
-  This will create a new repository with this template and a clean history.
+## ✨ Features
 
-#### Clone Manually
+- **Automatic Bypass**: Handles Sonar's verification stages (Gravity, Protocol, Vehicle) automatically
+- **Toggle Button**: A convenient ON/OFF button in the multiplayer server list screen
+- **Auto-Disable**: Automatically disables itself when you disconnect from a server
+- **Packet-level Handling**: Uses Mixins to intercept and respond to Sonar's verification packets in real-time
 
-- Alternatively, clone this repository using these commands for a clean history:
-  ```bash
-  git clone --depth 1 https://github.com/MeteorDevelopment/meteor-addon-template your-addon-name
-  cd your-addon-name
-  rm -rf .git
-  git init
-  git add .
-  git commit -m "Initial commit from template"
-  ```
+## 🎮 How to Use
 
-#### Development
+1. Install [Meteor Client](https://meteorclient.com/) and [Fabric Loader](https://fabricmc.net/) for Minecraft **1.21.11**
+2. Download the latest release of **Sonar Bypass** from [Releases](../../releases)
+3. Drop the `.jar` file into your `.minecraft/mods/` folder
+4. Launch Minecraft with the Fabric profile
+5. Open the **Multiplayer** screen — you'll see a **Sonar Bypass: OFF** button in the bottom-right corner
+6. Click it to turn it **ON**
+7. Connect to any server protected by Sonar — the bypass will run automatically
+8. The module will auto-disable when you leave the server
 
-- Use this template to add custom modules, commands, HUDs, and other features to Meteor Client.
-- To test, run the `Minecraft Client` configuration in your IDE.
-  This will start a Minecraft client with the Meteor Client mod and your addon loaded.
-- To build, run the gradle `build` task. This will create a JAR file in the `build/libs` folder.
-    - Move the JAR file to the `mods` folder of your Minecraft installation, alongside the Meteor Client mod and run the
-      game.
+## 🛠️ Building from Source
 
-### Updating to newer Minecraft versions
-
-To update this template to a newer Minecraft version, follow these steps:
-
-1. Ensure a Meteor Client snapshot is available for the new Minecraft version.
-2. Update `gradle/libs.versions.toml` (the versions catalog):
-    - Set the version entries to the new versions. Common keys to update are:
-        - `versions.minecraft` - Minecraft version
-        - `versions.fabric-loader` - Fabric loader version
-        - `versions.meteor` - Meteor Client snapshot version
-    - If your addon depends on other libraries listed under the `[libraries]` section, update their versions there as
-      needed.
-    - After editing, refresh Gradle dependencies and rebuild your project in the IDE.
-3. Update Loom:
-    - Change the `loom` version in `gradle/libs.versions.toml` (the `versions.loom` entry) to the latest version
-      compatible with the new Minecraft version.
-4. Update the Gradle wrapper:
-    - Run the wrapper update command for your platform. Examples:
-      - Unix / macOS / Windows (Powershell): `./gradlew wrapper --gradle-version <version> && ./gradlew wrapper`
-      - Windows (cmd.exe): `gradlew.bat wrapper --gradle-version <version> && gradlew.bat wrapper`
-    - This updates and regenerates the Gradle Wrapper scripts (`gradlew`, `gradlew.bat`, etc.) for the specified version.
-5. Update your source code:
-    - Adjust for Minecraft source changes: method names, imports, mixins, etc.
-    - Check for Meteor Client API changes that may affect your addon by comparing against the
-      [master branch](https://github.com/MeteorDevelopment/meteor-client/tree/master).
-6. Build and test:
-    - Run the gradle `build` task.
-    - Confirm the build succeeds and your addon works with the new Minecraft version.
-
-### Project structure
-
-```text
-.
-│── .github
-│   ╰── workflows
-│       │── dev_build.yml
-│       ╰── pull_request.yml
-│── gradle
-│   │── libs.versions.toml
-│   ╰── wrapper
-│       │── gradle-wrapper.jar
-│       ╰── gradle-wrapper.properties
-│── src
-│   ╰── main
-│       │── java
-│       │   ╰── com
-│       │       ╰── example
-│       │           ╰── addon
-│       │               │── commands
-│       │               │   ╰── CommandExample
-│       │               │── hud
-│       │               │   ╰── HudExample
-│       │               │── modules
-│       │               │   ╰── ModuleExample
-│       │               ╰── AddonTemplate
-│       ╰── resources
-│           │── assets
-│           │   ╰── template
-│           │       ╰── icon.png
-│           │── addon-template.mixins.json
-│           ╰── fabric.mod.json
-│── .editorconfig
-│── .gitignore
-│── build.gradle.kts
-│── gradle.properties
-│── gradlew
-│── gradlew.bat
-│── LICENSE
-│── README.md
-╰── settings.gradle.kts
+```bash
+git clone https://github.com/YOUR_USERNAME/Meteor-Sonar-Bypass.git
+cd Meteor-Sonar-Bypass
+./gradlew build
 ```
 
-This is the default project structure. Each folder/file has a specific purpose.  
-Here is a brief explanation of the ones you might need to modify:
+The compiled `.jar` will be in `build/libs/`.
 
-- `.github/workflows`: Contains the GitHub Actions configuration files.
-- `gradle`: Contains the Gradle wrapper files and the versions catalog.  
-  - `libs.versions.toml`: Defines version numbers for Minecraft, Loom, Meteor, and other dependencies.
-  - `wrapper`: Contains the Gradle wrapper executable files.  
-    To update the Gradle wrapper executable itself, run the wrapper update command (examples are shown above).
-- `src/main/java/com/example/addon`: Contains the main class of the addon.  
-  Here you can register your custom commands, modules, and HUDs.  
-  Edit the `getPackage` method to reflect the package of your addon.
-- `src/main/resources`: Contains the resources of the addon.
-    - `assets`: Contains the assets of the addon.  
-      You can add your own assets here, separated in subfolders.
-        - `template`: Contains the assets of the template.  
-          You can replace the `icon.png` file with your own addon icon.  
-          Also, rename this folder to reflect the name of your addon.
-    - `addon-template.mixins.json`: Contains the Mixin configuration for the addon.  
-      You can add your own mixins in the `client` array.
-    - `fabric.mod.json`: Contains the metadata of the addon.  
-      Edit the various fields to reflect the metadata of your addon.
-- `build.gradle.kts`: Contains the Gradle build script.  
-  You can manage the dependencies of the addon here.  
-  Remember to keep the `fabric-loom` version up-to-date.
-- `gradle.properties`: Contains additional build properties used by the build script
-  (for example `maven_group` and `archives_base_name`).  
-  Dependency and platform version numbers are stored in `gradle/libs.versions.toml`.
-- `LICENSE`: Contains the license of the addon.  
-  You can edit this file to change the license of your addon.
-- `README.md`: Contains the documentation of the addon.  
-  You can edit this file to reflect the documentation of your addon, and showcase its features.
+## 📦 Requirements
 
-## License
+- Minecraft **1.21.11**
+- Fabric Loader **0.19.3+**
+- Meteor Client **1.21.11-82+**
+- Java **21**
 
-This template is available under the CC0 license. Feel free to use it for your own projects.
+## 🧩 How It Works
+
+Sonar's verification pipeline consists of several stages:
+
+| Stage | What Sonar Checks | How This Addon Bypasses |
+|-------|-------------------|-------------------------|
+| **Login** | KeepAlive, Client Brand, Settings | Handled by vanilla client |
+| **Gravity** | Fall physics (`dy = (dy - 0.08) * 0.98`) | Handled by vanilla physics |
+| **Protocol** | Transaction (Ping), SetHeldItem, Swing | Mixin intercepts packets and responds |
+| **Vehicle** | Boat/Minecart movement | Handled by vanilla client |
+
+The key bypass is in `ClientConnectionMixin`, which intercepts `UpdateSelectedSlotS2CPacket` and `EntityAnimationS2CPacket` packets and responds with the correct `UpdateSelectedSlotC2SPacket` and `HandSwingC2SPacket`.
+
+## 📁 Project Structure
+
+```
+src/main/java/com/erfanmirdehghan/sonarbypass/
+├── SonarBypassAddon.java          # Main addon entry point
+├── modules/
+│   └── SonarBypass.java           # The bypass module
+└── mixins/
+    ├── ClientConnectionMixin.java # Packet interception
+    └── MultiplayerScreenMixin.java # Toggle button
+```
+
+## 🙏 Credits
+
+- [Meteor Client](https://github.com/MeteorDevelopment/meteor-client) — the client this addon is built for
+- [Sonar Anti-Bot](https://github.com/jonesdevelopment/sonar) — the anti-bot this addon bypasses
+- [Sonar Bypass (Node.js)](https://github.com/SirYadav1/sonar-bypass) — reference implementation that inspired parts of this project
+
+## 📄 License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+پلاگین Sonar با این ادان میگه قاپس

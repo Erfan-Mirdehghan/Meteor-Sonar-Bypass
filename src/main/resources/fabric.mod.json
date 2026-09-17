@@ -1,27 +1,28 @@
 {
   "schemaVersion": 1,
-  "id": "addon-template",
+  "id": "sonar-bypass",
   "version": "${version}",
-  "name": "Addon Template",
-  "description": "An addon template for Meteor Client addons.",
+  "name": "Sonar Bypass",
+  "description": "Bypasses Sonar Anti-Bot verification on local test servers.",
   "authors": [
-    "seasnail"
+    "Erfan Mirdehghan"
   ],
   "contact": {
-    "sources": "https://github.com/MeteorDevelopment/meteor-addon-template"
+    "homepage": "https://github.com/Erfan-Mirdehghan/Meteor-Sonar-Bypass",
+    "sources": "https://github.com/Erfan-Mirdehghan/Meteor-Sonar-Bypass"
   },
-  "icon": "assets/template/icon.png",
+  "icon": "assets/sonar-bypass/icon.png",
   "environment": "client",
   "entrypoints": {
     "meteor": [
-      "com.example.addon.AddonTemplate"
+      "com.erfanmirdehghan.sonarbypass.SonarBypassAddon"
     ]
   },
   "mixins": [
-    "addon-template.mixins.json"
+    "sonarbypass.mixins.json"
   ],
   "custom": {
-    "meteor-client:color": "225,25,25",
+    "meteor-client:color": "0,150,255",
     "modmenu": {
       "parent": {
         "id": "meteor-client"
@@ -29,8 +30,8 @@
     }
   },
   "depends": {
-    "java": ">=${jdk_version}",
-    "minecraft": "${minecraft_version}",
+    "java": ">=21",
+    "minecraft": ">=1.21.11",
     "meteor-client": "*"
   }
 }

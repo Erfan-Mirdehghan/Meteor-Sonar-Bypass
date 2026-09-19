@@ -27,7 +27,7 @@ This project is intended for **educational purposes** and **local testing only**
 ## 🛠️ Building from Source
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Meteor-Sonar-Bypass.git
+git clone https://github.com/Erfan-Mirdehghan/Meteor-Sonar-Bypass.git
 cd Meteor-Sonar-Bypass
 ./gradlew build
 ```
